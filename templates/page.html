@@ -1,0 +1,22 @@
+<div class="col-md-3">
+<select ng-model="$ctrl.filterVal.category" class="form-control">
+    <option value="">All</option>
+    <option ng-repeat="cat in $ctrl.categories" value="{{cat.id}}">{{cat.name}}</option>
+</select>
+<ul class="list-group">
+    <li ng-repeat="food in $ctrl.foods | filter: $ctrl.filterVal" class="list-group-item justify-content-between">
+        <p>
+            {{food.name}} {{$ctrl.categoryName(food.category)}}
+            <span class="pull-right glyphicon glyphicon-trash" ng-click="$ctrl.removeItem(food.id)"></span>&nbsp;
+            <span ng-click="$ctrl.editItem(food.id)" class="pull-right glyphicon glyphicon-pencil"></span>
+        </p>
+    </li>
+</ul>
+    <div class="form-field">
+        <input ng-model="$ctrl.newItem.id" ng-show="false"  />
+        <input ng-model="$ctrl.newItem.name" class="form-control" />
+        <select ng-model="$ctrl.newItem.category" ng-options="cat.id as cat.name for cat in $ctrl.categories" class="form-control">
+        </select>
+        <input type="button" ng-click="$ctrl.submitItem()" value="Submit" class="btn btn-default" />
+    </div>
+</div>
